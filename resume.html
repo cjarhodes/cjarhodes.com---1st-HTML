@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume – Alex Rhodes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #111110;
+      --surface: #1a1916;
+      --text:    #e8e5de;
+      --muted:   #6b6860;
+      --border:  #262420;
+      --hover:   #1e1d1a;
+      --accent:  #e8e5de;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--muted);
+      transition: text-decoration-color 0.2s;
+    }
+    a:hover { text-decoration-color: var(--text); }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      padding: 28px 0 0;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-home {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-home:hover { opacity: 0.75; }
+
+    /* ── Header ── */
+    header {
+      padding: 56px 0 52px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-label {
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    header h1 {
+      font-family: 'EB Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(34px, 6vw, 48px);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .header-title {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      padding: 5px 14px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .contact-chip:hover {
+      background: var(--text);
+      color: var(--bg);
+      text-decoration: none;
+    }
+    .contact-chip svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    /* ── Sections ── */
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* ── Overview ── */
+    .overview p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    /* ── Experience ── */
+    .job { margin-bottom: 40px; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+    .job-company {
+      font-family: 'EB Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .job-location {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .role { margin-top: 16px; }
+    .role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .role-title {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text);
+    }
+    .role-dates {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .role ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .role ul li {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .role ul li::before {
+      content: '—';
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-top: 0px;
+    }
+
+    /* highlight key numbers */
+    .stat {
+      font-weight: 500;
+    }
+
+    /* ── Education ── */
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .edu-school {
+      font-family: 'EB Garamond', serif;
+      font-size: 20px;
+    }
+    .edu-year {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .edu-detail {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 32px 0 48px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); }
+
+    /* ── Fade-in ── */
+    .fade {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .fade.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 480px) {
+      header { padding: 40px 0 40px; }
+      section { padding: 36px 0; }
+      .job-header { flex-direction: column; gap: 2px; }
+      .role-header { flex-direction: column; gap: 2px; }
+      .edu-row { flex-direction: column; gap: 2px; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; color: #111; }
+      .contact-chip { border-color: #ccc; color: #111; }
+      .fade { opacity: 1; transform: none; }
+      nav, footer { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <a class="nav-home" href="/">Alex Rhodes</a>
+      <a class="contact-chip" href="/" style="font-size:12px;">← Back</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <div class="container fade">
+      <p class="header-label">Resume</p>
+      <h1>Alex Rhodes</h1>
+      <p class="header-title">Account Executive</p>
+      <div class="contact-row">
+
+        <a class="contact-chip" href="tel:4144394014">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.337 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          414-439-4014
+        </a>
+
+        <a class="contact-chip" href="mailto:rhodescja@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+          rhodescja@gmail.com
+        </a>
+
+        <a class="contact-chip" href="https://linkedin.com/in/cjarhodes" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+          </svg>
+          LinkedIn
+        </a>
+
+        <span class="contact-chip" style="cursor:default;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          Chicago, IL
+        </span>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Professional Overview -->
+  <section>
+    <div class="container fade">
+      <p class="section-label">Professional Overview</p>
+      <div class="overview">
+        <p>A highly driven sales professional with a proven track record of top performance, consistently excelling across both net-new and existing customers. Delivered revenue far beyond set quarterly &amp; annual quota goals. Technically minded with industry certifications, a strong executive presence &amp; proven success selling to technical CXOs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience -->
+  <section>
+    <div class="container fade">
+      <p class="section-label">Work Experience</p>
+
+      <!-- Salesforce -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">Salesforce</span>
+          <span class="job-location">Chicago, IL</span>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Account Executive, Growth Business</span>
+            <span class="role-dates">2025 – Present</span>
+          </div>
+          <ul>
+            <li><span class="stat">150%</span>&nbsp;to New Logo Quota attainment in FY26 Q4.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Account Executive, Small Business</span>
+            <span class="role-dates">2024 – 2025</span>
+          </div>
+          <ul>
+            <li>FY25 <span class="stat">162% Quota Attainment</span> with <span class="stat">$543k</span> closed for the year.</li>
+            <li><span class="stat">#1 AE</span> in org for FY25 by quota attainment, exceeding the #2 AE by over 30%.</li>
+            <li>#1 AE in SB Central (45-person org) in December 2025 (<span class="stat">$65k</span> closed); #2 AE in January 2025 (<span class="stat">$308k</span> closed).</li>
+            <li><span class="stat">#1 of 45 AEs</span> in SB Central for Q4 FY25 with <span class="stat">$385k</span> closed in the quarter.</li>
+            <li>#5 Overall AE for FY25 in my 45-person org, despite being in seat for only 3 quarters.</li>
+            <li>Oversaw 123 named accounts across new logo &amp; existing customers with a <span class="stat">$1.6M AOV</span>.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Business Development Representative</span>
+            <span class="role-dates">2022 – 2024</span>
+          </div>
+          <ul>
+            <li>Consistent overachievement; awarded <span class="stat">Team MVP in 11 of 17 months</span> of tenure.</li>
+            <li><span class="stat">#1 Rep</span> in 90+ RCG BDR organization; MVP 4× &amp; finished <span class="stat">#1 BDR across all of AMER</span> (500+ BDRs) 2×.</li>
+            <li>Sourced <span class="stat">largest deal in RCG Mid-Market history</span> (<span class="stat">$1.2M ACV / $3.6M TCV</span>).</li>
+            <li>Selected to deliver enablements to all MFG &amp; RCG AEs; acclaimed as the top RCG BDR.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Sales Development Representative</span>
+            <span class="role-dates">2021 – 2022</span>
+          </div>
+          <ul>
+            <li>Delivered individually sourced ACV at <span class="stat">154%</span> (<span class="stat">$1.12M</span>) to quota.</li>
+            <li>Stage 2 attainment at <span class="stat">125%</span> to goal with over <span class="stat">650</span> qualified opportunities.</li>
+            <li>Achieved all promotion criteria and yearly KPI quotas in <span class="stat">10 months</span> vs. 12-month goal.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Stripe -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">Stripe</span>
+          <span class="job-location">Chicago, IL · 2025</span>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Account Executive, Startups &amp; SMB</span>
+            <span class="role-dates">2025</span>
+          </div>
+          <ul>
+            <li><span class="stat">468% quota attainment</span> to FY25 Q2 ramped quota (<span class="stat">$173k</span> closed on $37k quota).</li>
+            <li>Signed <span class="stat">23 Stripe users in Q2</span>, leading a 35-rep new-business org in new-logo volume.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Vacasa -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">Vacasa</span>
+          <span class="job-location">Charleston, SC &amp; Breckenridge, CO</span>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Operations Director</span>
+            <span class="role-dates">2019 – 2021</span>
+          </div>
+          <ul>
+            <li>Promoted to 2nd-line leadership from Operations Manager; directly managed 3 Front-Line Managers.</li>
+            <li>Reduced account churn by more than <span class="stat">13.46% YoY</span> in region.</li>
+            <li>Transformed regional operations servicing <span class="stat">$20M+</span> in total revenue across <span class="stat">800+ homes</span> &amp; <span class="stat">30+ FTEs</span>.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section>
+    <div class="container fade">
+      <p class="section-label">Education</p>
+      <div class="edu-row">
+        <span class="edu-school">University of Birmingham</span>
+        <span class="edu-year">2016</span>
+      </div>
+      <p class="edu-detail">BA History &amp; Political Science — 2:1 with Honours · Birmingham, England</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><a href="/">cjarhodes.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Staggered fade-in on scroll
+    const fades = document.querySelectorAll('.fade');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    fades.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
