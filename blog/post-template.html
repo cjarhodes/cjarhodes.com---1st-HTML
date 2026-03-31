@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- UPDATE: change title to match your post -->
+  <title>Post Title — Alex Rhodes</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #111110;
+      --surface: #1a1916;
+      --text: #e8e5de;
+      --muted: #6b6860;
+      --border: #262420;
+      --hover-bg: #1e1d1a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 40px 0 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text); }
+    .back-link svg { width: 12px; height: 12px; }
+
+    /* ── POST HEADER ── */
+    .post-header {
+      padding: 44px 0 0;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: up 0.5s ease 0.05s forwards;
+    }
+
+    .post-date {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .post-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 2px 9px;
+    }
+
+    .post-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(30px, 6vw, 42px);
+      font-weight: 400;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: up 0.55s ease 0.1s forwards;
+    }
+
+    .post-lede {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-style: italic;
+      font-family: 'EB Garamond', Georgia, serif;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 32px;
+      margin-bottom: 0;
+      opacity: 0;
+      animation: up 0.55s ease 0.15s forwards;
+    }
+
+    @keyframes up {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── BODY COPY ── */
+    .post-body {
+      padding: 36px 0 56px;
+    }
+
+    /* Paragraphs */
+    .post-body p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+
+    /* Headings */
+    .post-body h2 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text);
+      margin: 40px 0 14px;
+      letter-spacing: -0.1px;
+    }
+
+    .post-body h3 {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 32px 0 12px;
+    }
+
+    /* Links */
+    .post-body a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--border);
+      transition: text-decoration-color 0.2s;
+    }
+    .post-body a:hover { text-decoration-color: var(--text); }
+
+    /* Blockquote */
+    .post-body blockquote {
+      border-left: 2px solid var(--border);
+      margin: 28px 0;
+      padding: 4px 0 4px 20px;
+      color: var(--muted);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* Lists */
+    .post-body ul,
+    .post-body ol {
+      padding-left: 20px;
+      margin-bottom: 22px;
+    }
+    .post-body li {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    /* Horizontal rule */
+    .post-body hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    /* Code */
+    .post-body code {
+      font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: 13px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 6px;
+      color: var(--text);
+    }
+
+    /* ── POST FOOTER ── */
+    .post-footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 0;
+      margin-bottom: 0;
+    }
+
+    .post-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .post-footer-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .post-footer-back:hover { color: var(--text); }
+    .post-footer-back svg { width: 12px; height: 12px; }
+
+    .post-footer-share {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 36px 0 60px;
+      border-top: 1px solid var(--border);
+      margin-top: 52px;
+    }
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p { font-size: 12px; color: var(--muted); }
+    footer a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    footer a:hover { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      header { padding: 32px 0 28px; }
+      .post-header { padding-top: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <a href="/blog.html" class="back-link">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M7.5 2L3.5 6l4 4"/>
+        </svg>
+        Writing
+      </a>
+    </div>
+  </header>
+
+  <article>
+    <div class="wrap">
+
+      <!-- ── POST HEADER ───────────────────────────────────── -->
+      <div class="post-header">
+        <div class="post-meta">
+          <!-- UPDATE: date and category tag -->
+          <span class="post-date">March 2026</span>
+          <span class="post-tag">Building</span>  <!-- Building | Sales & GTM | Training | Life -->
+        </div>
+
+        <!-- UPDATE: your post title -->
+        <h1 class="post-title">Your Post Title Goes Here</h1>
+
+        <!-- UPDATE: one-sentence lede / hook (optional, delete if not wanted) -->
+        <p class="post-lede">
+          A one-sentence hook that draws the reader in.
+        </p>
+      </div>
+
+      <!-- ── POST BODY ─────────────────────────────────────── -->
+      <!--
+        Write your post content here.
+        Available elements:
+          <p>         — body paragraph
+          <h2>        — section heading (Garamond)
+          <h3>        — sub-heading (small caps)
+          <blockquote>— pull quote
+          <ul>/<ol>   — lists
+          <a href="">  — links
+          <hr>        — section divider
+          <code>      — inline code
+      -->
+      <div class="post-body">
+
+        <p>
+          Your opening paragraph goes here. Start with something that earns
+          the next sentence — a sharp observation, a counter-intuitive point,
+          or a concrete image that sets the scene.
+        </p>
+
+        <h2>A Section Heading</h2>
+
+        <p>
+          Body copy. Keep it tight. Write how you talk — direct, specific,
+          no filler. If a sentence doesn't earn its place, cut it.
+        </p>
+
+        <blockquote>
+          A pull quote or aside that deserves a little breathing room.
+        </blockquote>
+
+        <p>
+          Another paragraph. You can add as many sections as you need.
+          Delete the placeholder elements above and replace them with your
+          actual content.
+        </p>
+
+        <hr>
+
+        <p>
+          A closing thought. What's the one thing you want the reader to
+          walk away with?
+        </p>
+
+      </div>
+
+      <!-- ── POST FOOTER ───────────────────────────────────── -->
+      <div class="post-footer">
+        <div class="post-footer-inner">
+          <a href="/blog.html" class="post-footer-back">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M7.5 2L3.5 6l4 4"/>
+            </svg>
+            All posts
+          </a>
+          <span class="post-footer-share">rhodescja@gmail.com</span>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <p>&copy; 2026 Alex Rhodes</p>
+      <a href="/">← Home</a>
+    </div>
+  </footer>
+
+</body>
+</html>

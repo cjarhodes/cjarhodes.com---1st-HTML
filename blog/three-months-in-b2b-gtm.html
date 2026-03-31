@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3 Months Is a Long Time in B2B GTM — Alex Rhodes</title>
+  <meta name="description" content="The SaaS landscape has shifted — but the shift isn't about the AI layer. It's about the data layer underneath it." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #111110;
+      --surface: #1a1916;
+      --text: #e8e5de;
+      --muted: #6b6860;
+      --border: #262420;
+      --hover-bg: #1e1d1a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 40px 0 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text); }
+    .back-link svg { width: 12px; height: 12px; }
+
+    /* ── POST HEADER ── */
+    .post-header {
+      padding: 44px 0 0;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: up 0.5s ease 0.05s forwards;
+    }
+
+    .post-date {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .post-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 2px 9px;
+    }
+
+    .post-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(30px, 6vw, 42px);
+      font-weight: 400;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: up 0.55s ease 0.1s forwards;
+    }
+
+    .post-lede {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-style: italic;
+      font-family: 'EB Garamond', Georgia, serif;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 32px;
+      opacity: 0;
+      animation: up 0.55s ease 0.15s forwards;
+    }
+
+    @keyframes up {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── BODY COPY ── */
+    .post-body {
+      padding: 36px 0 56px;
+    }
+
+    .post-body p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+
+    .post-body h2 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text);
+      margin: 40px 0 14px;
+      letter-spacing: -0.1px;
+    }
+
+    .post-body h3 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 36px 0 14px;
+    }
+
+    .post-body a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--border);
+      transition: text-decoration-color 0.2s;
+    }
+    .post-body a:hover { text-decoration-color: var(--text); }
+
+    .post-body blockquote {
+      border-left: 2px solid var(--border);
+      margin: 32px 0;
+      padding: 4px 0 4px 20px;
+      color: var(--muted);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 19px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .post-body hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 44px 0;
+    }
+
+    .post-body strong {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ── POST FOOTER ── */
+    .post-footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 0;
+    }
+
+    .post-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .post-footer-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .post-footer-back:hover { color: var(--text); }
+    .post-footer-back svg { width: 12px; height: 12px; }
+
+    .post-footer-email {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .post-footer-email:hover { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 36px 0 60px;
+      border-top: 1px solid var(--border);
+      margin-top: 52px;
+    }
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p { font-size: 12px; color: var(--muted); }
+    footer a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    footer a:hover { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      header { padding: 32px 0 28px; }
+      .post-header { padding-top: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <a href="/blog.html" class="back-link">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M7.5 2L3.5 6l4 4"/>
+        </svg>
+        Writing
+      </a>
+    </div>
+  </header>
+
+  <article>
+    <div class="wrap">
+
+      <div class="post-header">
+        <div class="post-meta">
+          <span class="post-date">March 2026</span>
+          <span class="post-tag">Sales &amp; GTM</span>
+        </div>
+        <h1 class="post-title">3 Months Is a Long Time in B2B GTM</h1>
+        <p class="post-lede">
+          The SaaS landscape has shifted — but the shift isn't about the AI layer. It's about the data layer underneath it.
+        </p>
+      </div>
+
+      <div class="post-body">
+
+        <p>
+          The past few months have been more revealing than any period I can remember in technology.
+          2026 has made two things undeniable: the ROI of AI is real, the agentic era has arrived,
+          and — perhaps more importantly — your platform and system of record matter more than ever.
+          For serious companies, this was already table stakes in 2025. The ones who got it early
+          are being rewarded now.
+        </p>
+
+        <p>
+          Here's what the market is getting wrong though. The conversation has fixated on which model
+          is winning, which agent framework is shipping fastest, which startup just raised. That's
+          the wrong lens. The SaaS landscape has shifted — but the shift isn't about the AI layer.
+          It's about the data layer underneath it.
+        </p>
+
+        <blockquote>
+          AI without context is just fast slop. AI with the right context, connected to the right
+          system of record, is a different proposition entirely.
+        </blockquote>
+
+        <p>
+          If you've spent any time building with AI this year — writing <code>claude.md</code> files,
+          wiring up custom MCPs, vibe coding integrations — you'll have learned this lesson the
+          hard way. Context is everything. The model almost doesn't matter. What matters is what
+          you feed it and where that data lives.
+        </p>
+
+        <p>
+          Which brings me to Salesforce. If you're not already, go spin up a free dev org and connect
+          Claude (or Codex, Cursor — your pick… it'll probably change by next week) to the
+          Salesforce MCP. Vibe coding a CRM sounds reckless until you realise what Salesforce actually
+          gives you out of the box: enterprise-grade security, compliance, permissions, and uptime
+          that you'd spend months — and many, many millions of tokens and limit hits — building
+          from scratch anywhere else. You're not hacking together an unsecured prototype. You're
+          building on infrastructure that the world's largest companies already trust.
+        </p>
+
+        <hr>
+
+        <p>
+          Two things have crystallised for me from working in the Salesforce ecosystem over the past year.
+        </p>
+
+        <h3>1. Slack is where work happens</h3>
+
+        <p>
+          Where your day starts and ends. Where you collaborate with colleagues, surface updates
+          from Workday, Jira, and Salesforce, and increasingly — where you work with agents.
+          Prep for your next call. Draft your next deck. Pull pipeline data without opening a
+          single tab. Every paid Slack subscription already includes Slackbot, which brings the
+          power of Anthropic natively into your workflow with the context of your connected apps.
+          Most people haven't scratched the surface of what that actually enables. You should.
+        </p>
+
+        <h3>2. Salesforce is the system of record that makes all of it meaningful</h3>
+
+        <p>
+          Your customer data, call recordings, opportunity history, account context — it's all
+          there, structured, permissioned, and current. When an agent can reason across that,
+          you're not just saving time. You're making better decisions.
+        </p>
+
+        <hr>
+
+        <p>
+          The companies winning with AI right now aren't the ones with the flashiest models.
+          They're the ones who did the boring work of getting their data in order first.
+        </p>
+
+      </div>
+
+      <div class="post-footer">
+        <div class="post-footer-inner">
+          <a href="/blog.html" class="post-footer-back">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M7.5 2L3.5 6l4 4"/>
+            </svg>
+            All posts
+          </a>
+          <a href="mailto:rhodescja@gmail.com" class="post-footer-email">rhodescja@gmail.com</a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <p>&copy; 2026 Alex Rhodes</p>
+      <a href="/">← Home</a>
+    </div>
+  </footer>
+
+</body>
+</html>
